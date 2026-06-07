@@ -1,11 +1,9 @@
-/* Screen 3 — Register with floating labels, validation & password strength */
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const PHONE_REGEX = /^\d{10}$/
 
-/* Returns 'weak' | 'medium' | 'strong' | null */
 function getStrength(password) {
   if (!password) return null
   if (password.length < 6) return 'weak'
@@ -63,10 +61,15 @@ function Register() {
   }
 
   const handleSubmit = () => {
-    if (validate()) navigate('/account')
+    if (validate()) {
+      localStorage.setItem(
+        'popx_user',
+        JSON.stringify({ name: fields.fullName, email: fields.email }),
+      )
+      navigate('/account')
+    }
   }
 
-  /* Strength bar: segment 1 always lights up, 2 on medium+, 3 on strong */
   const seg = (index) => {
     if (!strength) return 'strength-seg'
     if (index === 0) return `strength-seg seg-${strength}`
@@ -84,7 +87,6 @@ function Register() {
         PopX account
       </h1>
 
-      {/* Full Name */}
       <div className="field-group">
         <input
           type="text"
@@ -99,7 +101,6 @@ function Register() {
         {errors.fullName && <span className="field-error-msg">{errors.fullName}</span>}
       </div>
 
-      {/* Phone */}
       <div className="field-group">
         <input
           type="tel"
@@ -115,7 +116,6 @@ function Register() {
         {errors.phone && <span className="field-error-msg">{errors.phone}</span>}
       </div>
 
-      {/* Email */}
       <div className="field-group">
         <input
           type="email"
@@ -130,7 +130,6 @@ function Register() {
         {errors.email && <span className="field-error-msg">{errors.email}</span>}
       </div>
 
-      {/* Password + strength indicator */}
       <div className="field-group">
         <input
           type="password"

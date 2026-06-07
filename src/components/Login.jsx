@@ -1,4 +1,3 @@
-/* Screen 2 — Login with field validation */
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -11,7 +10,6 @@ function Login() {
   const handleChange = (e) => {
     const { name, value } = e.target
     setFields((prev) => ({ ...prev, [name]: value }))
-    /* Clear error as user types */
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }))
   }
 
@@ -33,7 +31,13 @@ function Login() {
   }
 
   const handleLogin = () => {
-    if (validate()) navigate('/account')
+    if (validate()) {
+      localStorage.setItem(
+        'popx_user',
+        JSON.stringify({ name: fields.email.split('@')[0], email: fields.email }),
+      )
+      navigate('/account')
+    }
   }
 
   return (
@@ -47,7 +51,6 @@ function Login() {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
       </p>
 
-      {/* Email field */}
       <div className="input-wrapper">
         <input
           className={`input-field${errors.email ? ' input-error' : ''}`}
@@ -60,7 +63,6 @@ function Login() {
         {errors.email && <span className="error-msg">{errors.email}</span>}
       </div>
 
-      {/* Password field */}
       <div className="input-wrapper">
         <input
           className={`input-field${errors.password ? ' input-error' : ''}`}
