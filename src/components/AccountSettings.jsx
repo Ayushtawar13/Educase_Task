@@ -1,39 +1,55 @@
+/* Screen 4 — Account Settings with logout */
+import { useNavigate } from 'react-router-dom'
+
 function AccountSettings() {
+  const navigate = useNavigate()
+
   return (
     <div className="screen account-screen">
+      {/* Header bar */}
       <div className="account-header">
-        <h2>Account Settings</h2>
+        <span className="account-header-title">Account Settings</span>
       </div>
 
-      <div className="account-profile">
+      {/* Profile card */}
+      <div className="profile-card">
         <div className="avatar-wrapper">
           <img
-            src="https://i.pravatar.cc/80"
+            src="https://i.pravatar.cc/64?img=47"
             alt="Marry Doe"
             className="avatar-img"
           />
-          <div className="camera-badge" aria-label="Edit photo">
-            {/* Camera icon */}
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" />
+          {/* Camera / edit badge */}
+          <div className="camera-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+              <path d="M12 15.5A3.5 3.5 0 018.5 12 3.5 3.5 0 0112 8.5a3.5 3.5 0 013.5 3.5 3.5 3.5 0 01-3.5 3.5m7-10.5h-2.18l-.75-1H7.93L7.18 5H5A2 2 0 003 7v12a2 2 0 002 2h14a2 2 0 002-2V7a2 2 0 00-2-2z" />
             </svg>
           </div>
         </div>
 
         <div className="profile-info">
-          <h3>Marry Doe</h3>
-          <p>Marry@Gmail.Com</p>
+          <p className="profile-name">Marry Doe</p>
+          <p className="profile-email">Marry@Gmail.Com</p>
         </div>
       </div>
 
-      <div className="account-body">
-        <p className="account-bio">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-          ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-        </p>
-        <hr className="divider-dashed" />
+      {/* Bio */}
+      <p className="account-bio">
+        Lorem Ipsum Dolor Sit Amet, Consetetur Sadipscing Elitr, Sed Diam Nonumy
+        Eirmod Tempor Invidunt Ut Labore Et Dolore Magna Aliquyam Erat, Sed Diam
+      </p>
+
+      {/* Dashed separator */}
+      <div className="dashed-divider" />
+
+      {/* Spacer — pushes logout to the bottom */}
+      <div className="account-spacer" />
+
+      {/* Logout — anchored to bottom */}
+      <div className="logout-section">
+        <button className="btn-logout" onClick={() => navigate('/')}>
+          Logout
+        </button>
       </div>
     </div>
   )

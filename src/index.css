@@ -1,31 +1,533 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+/* ============================================================
+   Global Reset
+   ============================================================ */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html,
-body {
-  height: 100%;
-}
-
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif;
-  background: #cbcbcb;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
+body,
 #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background: #c8c8c8;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ============================================================
+   Phone Frame
+   ============================================================ */
+.phone-frame {
+  width: 375px;
+  height: 780px;
+  border-radius: 44px;
+  overflow: hidden;
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.35),
+    0 8px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  background: white;
+  flex-shrink: 0;
+}
+
+/* Each screen fills the frame completely */
+.screen {
   width: 100%;
-  padding: 24px;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   Screen 1 — Welcome
+   ============================================================ */
+
+/* Hero — upper 58% (~452px) */
+.welcome-hero {
+  height: 452px;
+  background: linear-gradient(145deg, #b8aef0 0%, #d4cef8 50%, #e8e4fb 100%);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.hero-circle-a {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  top: -40px;
+  right: -30px;
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  filter: blur(2px);
+}
+
+.hero-circle-b {
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  top: 120px;
+  left: -50px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+}
+
+.hero-circle-c {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  bottom: 20px;
+  right: 40px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+}
+
+/* Content — lower 42% (~328px) */
+.welcome-content {
+  background: white;
+  padding: 32px 28px 36px;
+}
+
+.welcome-heading {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1a1a2e;
+}
+
+.welcome-subtext {
+  font-size: 14px;
+  color: #888;
+  margin: 10px 0 28px;
+  line-height: 1.5;
+}
+
+.btn-create-account {
+  width: 100%;
+  padding: 15px;
+  background: #6c5ce7;
+  color: white;
+  border-radius: 32px;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  display: block;
+  transition: opacity 0.15s;
+}
+
+.btn-create-account:hover {
+  opacity: 0.9;
+}
+
+.btn-already-login {
+  width: 100%;
+  padding: 15px;
+  background: #ede9fb;
+  color: #6c5ce7;
+  border-radius: 32px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  margin-top: 14px;
+  font-family: inherit;
+  display: block;
+  transition: opacity 0.15s;
+}
+
+.btn-already-login:hover {
+  opacity: 0.85;
+}
+
+/* ============================================================
+   Screen 2 — Login
+   ============================================================ */
+
+.login-screen {
+  background: white;
+  padding: 36px 28px;
+}
+
+.login-heading {
+  font-size: 24px;
+  font-weight: 800;
+  color: #1a1a2e;
+  line-height: 1.3;
+}
+
+.login-subtext {
+  font-size: 13px;
+  color: #888;
+  margin: 10px 0 32px;
+  line-height: 1.5;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrapper + .input-wrapper {
+  margin-top: 16px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 15px 14px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.2s;
+  background: white;
+}
+
+.input-field:focus {
+  border-color: #6c5ce7;
+}
+
+.input-field.input-error {
+  border-color: #e74c3c;
+}
+
+.error-msg {
+  color: #e74c3c;
+  font-size: 11px;
+  margin-top: 5px;
+  margin-left: 2px;
+}
+
+.btn-login {
+  width: 100%;
+  padding: 15px;
+  background: #b8b8b8;
+  color: white;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  margin-top: 24px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s;
+  display: block;
+}
+
+.btn-login:hover {
+  background: #a5a5a5;
+}
+
+/* ============================================================
+   Screen 3 — Register
+   ============================================================ */
+
+.register-screen {
+  background: #f7f8fa;
+  padding: 28px 24px;
+}
+
+.register-heading {
+  font-size: 24px;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin-bottom: 24px;
+  line-height: 1.3;
+}
+
+/* Floating label field group */
+.field-group {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.field-group input {
+  width: 100%;
+  padding: 20px 14px 8px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 14px;
+  background: white;
+  outline: none;
+  color: #333;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+.field-group input:focus {
+  border-color: #6c5ce7;
+}
+
+.field-group input.field-error {
+  border-color: #e74c3c;
+}
+
+.field-group label {
+  position: absolute;
+  top: 8px;
+  left: 14px;
+  font-size: 11px;
+  color: #6c5ce7;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.field-error-msg {
+  color: #e74c3c;
+  font-size: 11px;
+  margin-top: 4px;
+  margin-left: 4px;
+}
+
+/* Password strength indicator */
+.strength-bar {
+  display: flex;
+  gap: 5px;
+  margin-top: 7px;
+}
+
+.strength-seg {
+  height: 3px;
+  flex: 1;
+  border-radius: 2px;
+  background: #e0e0e0;
+  transition: background 0.25s;
+}
+
+.strength-seg.seg-weak {
+  background: #e74c3c;
+}
+
+.strength-seg.seg-medium {
+  background: #f39c12;
+}
+
+.strength-seg.seg-strong {
+  background: #2ecc71;
+}
+
+.strength-text {
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 3px;
+  margin-left: 2px;
+}
+
+.strength-text.lbl-weak {
+  color: #e74c3c;
+}
+
+.strength-text.lbl-medium {
+  color: #f39c12;
+}
+
+.strength-text.lbl-strong {
+  color: #2ecc71;
+}
+
+/* Radio group */
+.radio-group {
+  margin-bottom: 20px;
+}
+
+.radio-group-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.radio-options {
+  display: flex;
+  gap: 28px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  user-select: none;
+}
+
+.radio-option input[type='radio'] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 17px;
+  height: 17px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+
+.radio-option input[type='radio']:checked {
+  border-color: #6c5ce7;
+  background: #6c5ce7;
+}
+
+.radio-option input[type='radio']:checked::after {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: white;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn-register {
+  width: 100%;
+  padding: 15px;
+  background: #6c5ce7;
+  color: white;
+  border-radius: 32px;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  margin-top: 20px;
+  cursor: pointer;
+  font-family: inherit;
+  display: block;
+  transition: opacity 0.15s;
+}
+
+.btn-register:hover {
+  opacity: 0.9;
+}
+
+/* ============================================================
+   Screen 4 — Account Settings
+   ============================================================ */
+
+.account-screen {
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.account-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid #f0f0f0;
+  flex-shrink: 0;
+}
+
+.account-header-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.profile-card {
+  background: #f7f8fa;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.avatar-wrapper {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+}
+
+.avatar-img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.camera-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  background: #6c5ce7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.profile-email {
+  font-size: 13px;
+  color: #888;
+  margin-top: 3px;
+}
+
+.account-bio {
+  padding: 16px 24px;
+  font-size: 13px;
+  color: #666;
+  line-height: 1.7;
+  flex-shrink: 0;
+}
+
+.dashed-divider {
+  border: none;
+  border-bottom: 1.5px dashed #ddd;
+  margin: 0 24px;
+  flex-shrink: 0;
+}
+
+/* Spacer pushes logout to the bottom */
+.account-spacer {
+  flex: 1;
+}
+
+.logout-section {
+  padding: 24px 24px 32px;
+  flex-shrink: 0;
+}
+
+.btn-logout {
+  width: 100%;
+  padding: 15px;
+  background: white;
+  color: #e74c3c;
+  border: 1.5px solid #e74c3c;
+  border-radius: 32px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.btn-logout:hover {
+  background: #e74c3c;
+  color: white;
 }
