@@ -15,10 +15,10 @@ function AccountSettings() {
   return (
     <div className="screen account-screen">
       <div className="account-header">
-        <span className="account-header-title">Account Settings</span>
+        <h2>Account Settings</h2>
       </div>
 
-      <div className="profile-card">
+      <div className="account-profile">
         <div className="avatar-wrapper">
           <img
             src="https://i.pravatar.cc/64?img=47"
@@ -33,7 +33,7 @@ function AccountSettings() {
         </div>
 
         <div className="profile-info">
-          <p className="profile-name">{user.name}</p>
+          <h3 className="profile-name">{user.name}</h3>
           <p className="profile-email">{user.email}</p>
         </div>
       </div>
@@ -43,10 +43,10 @@ function AccountSettings() {
         Eirmod Tempor Invidunt Ut Labore Et Dolore Magna Aliquyam Erat, Sed Diam
       </p>
 
-      <div className="dashed-divider" />
+      <div className="divider-dashed" />
       <div className="account-spacer" />
       <div className="logout-section">
-        <button className="btn-logout" onClick={() => navigate('/')}>
+        <button className="account-btn" onClick={() => navigate('/')}>
           Logout
         </button>
       </div>
